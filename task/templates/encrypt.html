@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row g-4">
+  <div class="col-md-7">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h4 class="card-title">Зашифровать файл</h4>
+        <form action="{{ url_for('encrypt_route') }}" method="post" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label class="form-label">Файл</label>
+            <input class="form-control" type="file" name="file" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Пароль</label>
+            <input class="form-control" type="password" name="password" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Формат (расширение)</label>
+            <select class="form-select" name="out_ext">
+              <option value=".myenc">.myenc</option>
+              <option value=".secfile">.secfile</option>
+              <option value=".crypt">.crypt</option>
+            </select>
+          </div>
+          <button class="btn btn-success">🔒 Зашифровать и скачать</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-5">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h4 class="card-title">Расшифровать файл</h4>
+        <form action="{{ url_for('decrypt_route') }}" method="post" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label class="form-label">Зашифрованный файл</label>
+            <input class="form-control" type="file" name="file" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Пароль</label>
+            <input class="form-control" type="password" name="password" required>
+          </div>
+          <button class="btn btn-primary">🔓 Расшифровать и скачать</button>
+        </form>
+        <div class="small text-muted mt-3">
+          Примечание: это учебная реализация. Не используйте для критичных данных.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

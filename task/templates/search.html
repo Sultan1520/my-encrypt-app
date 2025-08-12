@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Поиск по Part Number{% endblock %}
+{% block content %}
+<div class="card shadow-lg border-0">
+    <div class="card-body">
+        <h3 class="mb-4">Поиск по Mouser Part Number</h3>
+        <form method="POST" class="d-flex gap-2">
+            <input type="text" name="part_number" class="form-control form-control-lg" placeholder="Введите Part Number" required>
+            <button type="submit" class="btn btn-primary btn-lg">Найти</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

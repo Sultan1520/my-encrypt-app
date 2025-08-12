@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+
+<div class="d-flex flex-column justify-content-center align-items-center">
+    <h1 class="mb-5 text-center">Выберите действие</h1>
+    <div class="d-grid gap-4 col-6 mx-auto">
+        <a href="{{ url_for('search_page') }}" class="btn btn-primary btn-lg btn-dark py-3">Задание 1. Поиск по API</a>
+        <a href="{{ url_for('encrypt_page') }}" class="btn btn-success btn-lg btn-dark py-3">Задание 2. Шифрование/Расшифровка файлов</a>
+    </div>
+</div>
+
+{% endblock %}

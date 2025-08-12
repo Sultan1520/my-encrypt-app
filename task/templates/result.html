@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Результаты{% endblock %}
+{% block content %}
+<h3>Результаты поиска: <span class="text-primary">{{ part_number }}</span></h3>
+{% if data %}
+<div class="table-responsive mt-4">
+    <table class="table table-hover table-bordered align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Part Number</th>
+                <th>Product Category</th>
+                <th>LeadTime</th>
+                <th>Description</th>
+                <th>Stock</th>
+                <th>Price</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                <td>{{ item.get('MouserPartNumber', '-') }}</td>
+                <td>{{ item.get('Category', '-') }}</td>
+                <td>{{ item.get('LeadTime', '-') }}</td>
+                <td>{{ item.get('Description', '-') }}</td>
+                <td>{{ item.get('Availability', '-') }}</td>
+                <td>
+                    {% if item.get('PriceBreaks') %}
+                        {{ item['PriceBreaks'][0]['Price'] }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td>
+                    {% if item.get('ImagePath') %}
+                        <img src="{{ item['ImagePath'] }}" alt="img" class="img-thumbnail" style="max-width:80px;">
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="alert alert-warning mt-3">Данные не найдены</div>
+{% endif %}
+<a href="/" class="btn btn-secondary mt-3">⬅ Назад</a>
+{% endblock %}
